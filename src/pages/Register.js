@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -21,13 +23,15 @@ function Register() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${process.env.REACT_APP_API_URL}/auth/register`,
         form
       );
 
       alert("Registration Successful");
+
+      navigate("/login");
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err.response?.data?.message || "Registration failed");
     }
   };
 
