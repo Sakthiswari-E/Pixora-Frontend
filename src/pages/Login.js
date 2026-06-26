@@ -18,49 +18,35 @@ function Login() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        form
-      );
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/login`,
+      form
+    );
 
-      // localStorage.setItem(
-      //   "token",
-      //   res.data.token
-      // );
+    localStorage.setItem(
+      "token",
+      res.data.token
+    );
 
-      // localStorage.setItem(
-      //   "user",
-      //   JSON.stringify(res.data.user)
-      // );
+    localStorage.setItem(
+      "user",
+      JSON.stringify(res.data.user)
+    );
 
-      // alert("Login Successful");
+    toast.success("Login Successful");
 
-      // navigate("/", { replace: true });
-      localStorage.setItem(
-        "token",
-        res.data.token
-      );
+    navigate("/", { replace: true });
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(res.data.user)
-      );
-
-      toast.success("Login Successful");
-
-      navigate("/", { replace: true });
-
-    } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Login Failed"
-      );
-    }
-  };
+  } catch (err) {
+    toast.error(
+      err.response?.data?.message || "Login Failed"
+    );
+  }
+};
 
   return (
     <div className="min-h-screen bg-black text-white flex justify-center items-center">
