@@ -192,7 +192,7 @@ Please contact me regarding this project.
                       onClick={() =>
                         setPreview({
                           type: "video",
-                          src: `http://localhost:3000${product.images[0]}`
+                          src: product.images[0],
                         })
                       }
                       className="
@@ -204,7 +204,7 @@ Please contact me regarding this project.
                       "
                     >
                       <source
-                        src={`http://localhost:3000${product.images[0]}`}
+                        src={product.images[0]}
                         type="video/mp4"
                       />
                     </video>
@@ -212,7 +212,7 @@ Please contact me regarding this project.
                   ) : (
 
                     <img
-                      src={`http://localhost:3000${product.images[0]}`}
+                      src={product.images[0]}
                       alt={product.name}
                       onClick={() =>
                         setPreview({
