@@ -217,7 +217,7 @@ Please contact me regarding this project.
                       onClick={() =>
                         setPreview({
                           type: "image",
-                          src: `http://localhost:3000${product.images[0]}`
+                          src: `${product.images[0]}`
                         })
                       }
                       className="
