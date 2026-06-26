@@ -81,7 +81,7 @@ Please provide more details.
               "
             >
               <img
-                src={`http://localhost:3000${item.product?.images[0]}`}
+                src={item.product?.images[0]}
                 alt={item.product?.name}
                 className="
                 w-full

@@ -215,14 +215,14 @@ Please contact me regarding this project.
                     })
                   }
                   className="
-    w-full
-    h-full
-    object-cover
-    transition-all
-    duration-700
-    group-hover:scale-110
-    cursor-zoom-in
-  "
+                  w-full
+                  h-full
+                  object-cover
+                  transition-all
+                  duration-700
+                  group-hover:scale-110
+                  cursor-zoom-in
+                "
                 />
 
                 {/* Multiple Images */}
@@ -360,28 +360,28 @@ Please contact me regarding this project.
           <div
             onClick={() => setPreview(null)}
             className="
-      fixed
-      inset-0
-      z-50
-      bg-black/95
-      flex
-      items-center
-      justify-center
-      p-6
-    "
+            fixed
+            inset-0
+            z-50
+            bg-black/95
+            flex
+            items-center
+            justify-center
+            p-6
+          "
           >
             {/* Close Button */}
             <button
               onClick={() => setPreview(null)}
               className="
-        absolute
-        top-6
-        right-6
-        text-white
-        text-5xl
-        hover:text-fuchsia-400
-        z-50
-      "
+              absolute
+              top-6
+              right-6
+              text-white
+              text-5xl
+              hover:text-fuchsia-400
+              z-50
+            "
             >
               ✕
             </button>
@@ -392,11 +392,11 @@ Please contact me regarding this project.
                 alt="Preview"
                 onClick={(e) => e.stopPropagation()}
                 className="
-          max-w-[95vw]
-          max-h-[95vh]
-          object-contain
-          rounded-3xl
-        "
+                max-w-[95vw]
+                max-h-[95vh]
+                object-contain
+                rounded-3xl
+              "
               />
             ) : (
               <video
@@ -404,10 +404,10 @@ Please contact me regarding this project.
                 autoPlay
                 onClick={(e) => e.stopPropagation()}
                 className="
-          max-w-[95vw]
-          max-h-[95vh]
-          rounded-3xl
-        "
+                max-w-[95vw]
+                max-h-[95vh]
+                rounded-3xl
+              "
               >
                 <source src={preview.src} type="video/mp4" />
               </video>

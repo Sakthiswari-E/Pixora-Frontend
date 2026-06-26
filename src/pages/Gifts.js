@@ -462,12 +462,12 @@ Please contact me regarding this project.
             <button
               onClick={() => setSelectedVideo(null)}
               className="
-                      absolute
-                      top-6
-                      right-6
-                      text-white
-                      text-5xl
-                      "
+              absolute
+              top-6
+              right-6
+              text-white
+              text-5xl
+              "
             >
               ✕
             </button>
@@ -477,10 +477,10 @@ Please contact me regarding this project.
               controls
               autoPlay
               className="
-                      max-w-[95vw]
-                      max-h-[90vh]
-                      rounded-2xl
-                      "
+              max-w-[95vw]
+              max-h-[90vh]
+              rounded-2xl
+              "
             />
           </div>
         )}
@@ -489,28 +489,28 @@ Please contact me regarding this project.
           <div
             onClick={() => setPreview(null)}
             className="
-      fixed
-      inset-0
-      z-50
-      bg-black/95
-      flex
-      items-center
-      justify-center
-      p-6
-    "
+            fixed
+            inset-0
+            z-50
+            bg-black/95
+            flex
+            items-center
+            justify-center
+            p-6
+          "
           >
             {/* Close Button */}
             <button
               onClick={() => setPreview(null)}
               className="
-        absolute
-        top-6
-        right-6
-        text-white
-        text-5xl
-        hover:text-fuchsia-400
-        z-50
-      "
+              absolute
+              top-6
+              right-6
+              text-white
+              text-5xl
+              hover:text-fuchsia-400
+              z-50
+            "
             >
               ✕
             </button>
@@ -521,11 +521,11 @@ Please contact me regarding this project.
                 alt="Preview"
                 onClick={(e) => e.stopPropagation()}
                 className="
-          max-w-[95vw]
-          max-h-[95vh]
-          object-contain
-          rounded-3xl
-        "
+                max-w-[95vw]
+                max-h-[95vh]
+                object-contain
+                rounded-3xl
+              "
               />
             ) : (
               <video
@@ -533,10 +533,10 @@ Please contact me regarding this project.
                 autoPlay
                 onClick={(e) => e.stopPropagation()}
                 className="
-          max-w-[95vw]
-          max-h-[95vh]
-          rounded-3xl
-        "
+                max-w-[95vw]
+                max-h-[95vh]
+                rounded-3xl
+              "
               >
                 <source src={preview.src} type="video/mp4" />
               </video>

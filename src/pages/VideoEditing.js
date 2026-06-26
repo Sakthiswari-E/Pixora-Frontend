@@ -172,15 +172,15 @@ Please contact me regarding this project.
               animate={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
               className="
-            bg-[#111]
-            rounded-3xl
-            overflow-hidden
-            border
-            border-fuchsia-500/20
-            hover:border-fuchsia-500/40
-            transition-all
-            duration-500
-            "
+              bg-[#111]
+              rounded-3xl
+              overflow-hidden
+              border
+              border-fuchsia-500/20
+              hover:border-fuchsia-500/40
+              transition-all
+              duration-500
+              "
             >
 
               <div className="grid lg:grid-cols-5 ">
