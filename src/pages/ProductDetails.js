@@ -3,35 +3,68 @@ import { useEffect, useState } from "react";
 import API from "../api/axios";
 
 function ProductDetails() {
-  const { id } = useParams();
+    const { id } = useParams();
 
-  const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState(null);
 
-  useEffect(() => {
-    fetchProduct();
-  }, []);
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await API.get(`/products/${id}`);
+                setProduct(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-  const fetchProduct = async () => {
-    const res = await API.get(`/products/${id}`);
-    setProduct(res.data);
-  };
+        fetchProduct();
+    }, [id]);
 
-  if (!product) return <h2>Loading...</h2>;
+    if (!product) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-white bg-black">
+                <h2 className="text-2xl">Loading...</h2>
+            </div>
+        );
+    }
 
-  return (
-    <div>
-      <h1>{product.name}</h1>
+    const BASE_URL = process.env.REACT_APP_API_URL.replace("/api", "");
 
-      <img
-        src={`${process.env.REACT_APP_API_URL.replace("/api","")}${product.images[0]}`}
-        alt={product.name}
-      />
+    return (
+        <div className="min-h-screen bg-black text-white p-10">
 
-      <p>{product.description}</p>
+            <h1 className="text-4xl font-bold mb-6">
+                {product.name}
+            </h1>
 
-      <h2>₹{product.price}</h2>
-    </div>
-  );
+            {product.video ? (
+                <video
+                    controls
+                    className="w-full max-w-3xl rounded-2xl mb-6"
+                >
+                    <source
+                        src={`${BASE_URL}${product.video}`}
+                        type="video/mp4"
+                    />
+                </video>
+            ) : (
+                <img
+                    src={`${BASE_URL}${product.images[0]}`}
+                    alt={product.name}
+                    className="w-full max-w-3xl rounded-2xl mb-6"
+                />
+            )}
+
+            <p className="text-gray-300 text-lg mb-4">
+                {product.description}
+            </p>
+
+            <h2 className="text-3xl font-bold text-fuchsia-400">
+                ₹{product.price}
+            </h2>
+
+        </div>
+    );
 }
 
 export default ProductDetails;
