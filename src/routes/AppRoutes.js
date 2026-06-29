@@ -14,6 +14,7 @@ import GraphicDesign from "../pages/GraphicDesign";
 import PhotoEditing from "../pages/PhotoEditing";
 import EditProfile from "../pages/EditProfile";
 import ChangePassword from "../pages/ChangePassword";
+import ProductDetails from "../pages/ProductDetails";
 
 function AppRoutes() {
   return (
@@ -50,8 +51,12 @@ function AppRoutes() {
       <Route path="/video-editing" element={<VideoEditing />} />
       <Route path="/graphic-design" element={<GraphicDesign />} />
       <Route path="/photo-editing" element={<PhotoEditing />} />
-      <Route path="/edit-profile" element={<EditProfile /> } />
+      <Route path="/edit-profile" element={<EditProfile />} />
       <Route path="/change-password" element={<ChangePassword />} />
+      <Route
+        path="/product/:id"
+        element={<ProductDetails />}
+      />
     </Routes>
   );
 }
