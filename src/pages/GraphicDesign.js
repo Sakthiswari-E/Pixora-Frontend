@@ -65,9 +65,6 @@ I am interested in:
 🖼️ Preview:
 ${mediaUrl}
 
-🔗 Product Link:
-${productLink}
-
 Please share more details.
 `;
 
