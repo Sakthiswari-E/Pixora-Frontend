@@ -44,38 +44,6 @@ function Gifts() {
       alert("Please Login First");
     }
   };
-  const handleBuyNow = (product) => {
-    const message = `
-Hello PIXORA 
-
- Photo Editing Request
-
- Name: ${formData.name}
- Email: ${formData.email}
-
- Requirement:
-${formData.requirement}
-
-      Please provide more details.
-     `;
-    window.open(
-      `https://wa.me/916383009739?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  };
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    requirement: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleBuyNow = (product) => {
     const MEDIA_BASE = window.location.origin;
@@ -109,6 +77,41 @@ Please share more details.
     );
   };
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    requirement: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const message = `
+Hello Pixora 👋
+
+🎬 custom gift request
+
+👤 Name: ${formData.name}
+📧 Email: ${formData.email}
+
+📝 Requirement:
+${formData.requirement}
+
+Please contact me regarding this project.
+`;
+
+    window.open(
+      `https://wa.me/916383009739?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
 
 
   return (
