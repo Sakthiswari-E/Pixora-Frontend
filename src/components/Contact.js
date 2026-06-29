@@ -23,7 +23,7 @@ function Contact() {
 
           {/* WhatsApp */}
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=pixoradigitalstudio@gmail.com"
+            href="https://wa.me/916383009739"
             target="_blank"
             rel="noopener noreferrer"
             className="
@@ -67,7 +67,9 @@ function Contact() {
 
           {/* Email */}
           <a
-            href="pixoradigitalstudio@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=pixoradigitalstudio@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
             bg-[#111111]
             border
