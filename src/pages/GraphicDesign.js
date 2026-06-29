@@ -58,11 +58,11 @@ Hello Pixora 👋
 
 I am interested in:
 
-📦 Product: ${product.name}
-📂 Category: ${product.category}
-💰 Price: ₹${product.price}
+ Product: ${product.name}
+ Category: ${product.category}
+ Price: ₹${product.price}
 
-🖼️ Preview:
+ Preview:
 ${mediaUrl}
 
 Please share more details.

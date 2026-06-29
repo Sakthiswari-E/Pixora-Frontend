@@ -27,9 +27,7 @@ function ProductDetails() {
             </div>
         );
     }
-
-    const BASE_URL = process.env.REACT_APP_API_URL.replace("/api", "");
-
+    const MEDIA_BASE = window.location.origin;
     return (
         <div className="min-h-screen bg-black text-white p-10">
 
@@ -43,13 +41,13 @@ function ProductDetails() {
                     className="w-full max-w-3xl rounded-2xl mb-6"
                 >
                     <source
-                        src={`${BASE_URL}${product.video}`}
+                        src={`${MEDIA_BASE}${product.video}`}
                         type="video/mp4"
                     />
                 </video>
             ) : (
                 <img
-                    src={`${BASE_URL}${product.images[0]}`}
+                    src={`${MEDIA_BASE}${product.images[0]}`}
                     alt={product.name}
                     className="w-full max-w-3xl rounded-2xl mb-6"
                 />
