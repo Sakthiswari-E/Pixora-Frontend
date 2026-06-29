@@ -40,18 +40,31 @@ function GraphicDesign() {
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const BASE_URL = process.env.REACT_APP_API_URL.replace("/api", "");
+
   const handleBuyNow = (product) => {
+    let mediaUrl = "";
+
+    if (product.video) {
+      mediaUrl = `${BASE_URL}${product.video}`;
+    } else if (product.images?.length > 0) {
+      mediaUrl = `${BASE_URL}${product.images[0]}`;
+    }
+
     const message = `
-    Hello Pixora 👋
+Hello Pixora 
 
-    I am interested in:
-        Image: ${product.images[0]}
-        Design: ${product.name}
-        Category: ${product.category}
-        Price: ₹${product.price}
+I am interested in:
 
-    Please share more details.
-    `;
+ Product: ${product.name}
+ Category: ${product.category}
+ Price: ₹${product.price}
+
+ Preview:
+${mediaUrl}
+
+Please share more details.
+`;
 
     window.open(
       `https://wa.me/916383009739?text=${encodeURIComponent(message)}`,
