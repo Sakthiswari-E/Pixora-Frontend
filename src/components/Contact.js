@@ -23,7 +23,7 @@ function Contact() {
 
           {/* WhatsApp */}
           <a
-            href="https://wa.me/916383009739"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=pixoradigitalstudio@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             className="
