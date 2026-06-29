@@ -51,8 +51,6 @@ function GraphicDesign() {
       mediaUrl = `${MEDIA_BASE}${product.images[0]}`;
     }
 
-    const productLink = `${MEDIA_BASE}/product/${product._id}`;
-
     const message = `
 Hello Pixora 👋
 
