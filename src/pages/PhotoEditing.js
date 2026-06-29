@@ -8,7 +8,7 @@ function PhotoEditing() {
   const [products, setProducts] = useState([]);
   const [currentImages, setCurrentImages] = useState({});
   const [preview, setPreview] = useState(null);
-  
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -41,13 +41,27 @@ function PhotoEditing() {
   );
 
   const handleBuyNow = (product) => {
+    const MEDIA_BASE = window.location.origin;
+
+    let mediaUrl = "";
+
+    if (product.video) {
+      mediaUrl = `${MEDIA_BASE}${product.video}`;
+    } else if (product.images?.length > 0) {
+      mediaUrl = `${MEDIA_BASE}${product.images[0]}`;
+    }
+
     const message = `
 Hello Pixora 👋
 
 I am interested in:
 
-📸 Service: ${product.name}
-💰 Price: ₹${product.price}
+ Product: ${product.name}
+ Category: ${product.category}
+ Price: ₹${product.price}
+
+ Preview:
+${mediaUrl}
 
 Please share more details.
 `;

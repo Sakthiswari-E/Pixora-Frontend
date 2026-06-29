@@ -77,21 +77,30 @@ ${formData.requirement}
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleBuyNow = (product) => {
+    const MEDIA_BASE = window.location.origin;
+
+    let mediaUrl = "";
+
+    if (product.video) {
+      mediaUrl = `${MEDIA_BASE}${product.video}`;
+    } else if (product.images?.length > 0) {
+      mediaUrl = `${MEDIA_BASE}${product.images[0]}`;
+    }
 
     const message = `
 Hello Pixora 👋
 
-🎬 custom gift request
+I am interested in:
 
-👤 Name: ${formData.name}
-📧 Email: ${formData.email}
+ Product: ${product.name}
+ Category: ${product.category}
+ Price: ₹${product.price}
 
-📝 Requirement:
-${formData.requirement}
+ Preview:
+${mediaUrl}
 
-Please contact me regarding this project.
+Please share more details.
 `;
 
     window.open(
@@ -99,6 +108,7 @@ Please contact me regarding this project.
       "_blank"
     );
   };
+
 
 
   return (
