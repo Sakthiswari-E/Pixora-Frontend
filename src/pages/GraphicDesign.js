@@ -40,28 +40,33 @@ function GraphicDesign() {
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const BASE_URL = process.env.REACT_APP_API_URL.replace("/api", "");
-
   const handleBuyNow = (product) => {
+    const MEDIA_BASE = window.location.origin;
+
     let mediaUrl = "";
 
     if (product.video) {
-      mediaUrl = `${BASE_URL}${product.video}`;
+      mediaUrl = `${MEDIA_BASE}${product.video}`;
     } else if (product.images?.length > 0) {
-      mediaUrl = `${BASE_URL}${product.images[0]}`;
+      mediaUrl = `${MEDIA_BASE}${product.images[0]}`;
     }
 
+    const productLink = `${MEDIA_BASE}/product/${product._id}`;
+
     const message = `
-Hello Pixora 
+Hello Pixora 👋
 
 I am interested in:
 
- Product: ${product.name}
- Category: ${product.category}
- Price: ₹${product.price}
+📦 Product: ${product.name}
+📂 Category: ${product.category}
+💰 Price: ₹${product.price}
 
- Preview:
+🖼️ Preview:
 ${mediaUrl}
+
+🔗 Product Link:
+${productLink}
 
 Please share more details.
 `;
@@ -71,6 +76,7 @@ Please share more details.
       "_blank"
     );
   };
+
 
   const [formData, setFormData] = useState({
     name: "",
