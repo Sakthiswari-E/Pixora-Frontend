@@ -6,7 +6,7 @@ Pixora Digital is a full-stack MERN application that provides creative digital s
 
 ## 🚀 Live Demo
 
-Frontend: https://your-netlify-link.netlify.app
+Frontend: live(https://pixora-digital.netlify.app/)
 
 Backend API: https://your-render-link.onrender.com
 
