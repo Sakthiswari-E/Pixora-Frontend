@@ -9,7 +9,9 @@ function Gifts() {
   const [currentImages, setCurrentImages] = useState({});
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [preview, setPreview] = useState(null);
-
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   const fetchProducts = async () => {
     try {
       const [framesRes, giftsRes] = await Promise.all([
