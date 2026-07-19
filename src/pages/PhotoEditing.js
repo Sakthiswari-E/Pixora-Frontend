@@ -24,13 +24,8 @@ function PhotoEditing() {
 
   const fetchProducts = async () => {
     try {
-      const res = await API.get("/products");
-
-      const photoProducts = res.data.filter(
-        (item) => item.category === "photo-editing"
-      );
-
-      setProducts(photoProducts);
+      const res = await API.get("/products/category/photo-editing");
+      setProducts(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -334,7 +329,7 @@ Please contact me regarding this project.
                     text-transparent
                     "
                   >
-                  ₹{product.price} {product.priceLabel || ""}
+                    ₹{product.price} {product.priceLabel || ""}
                   </p>
 
                 </div>

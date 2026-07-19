@@ -10,19 +10,17 @@ function Gifts() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   const fetchProducts = async () => {
     try {
-      const res = await API.get("/products");
-      const Frames = res.data.filter(
-        (item) =>
-          item.category === "Frames" ||
-          item.category === "gifts"
-      );
-      setProducts(Frames);
+      const [framesRes, giftsRes] = await Promise.all([
+        API.get("/products/category/Frames"),
+        API.get("/products/category/gifts"),
+      ]);
+
+      setProducts([
+        ...framesRes.data,
+        ...giftsRes.data,
+      ]);
     } catch (error) {
       console.log(error);
     }

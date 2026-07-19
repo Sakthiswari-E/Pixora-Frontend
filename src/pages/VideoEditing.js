@@ -13,12 +13,8 @@ function VideoEditing() {
 
   const fetchProducts = async () => {
     try {
-      const res = await API.get("/products");
-
-      const videoProducts = res.data.filter(
-        (item) => item.category === "video-editing"
-      );
-      setProducts(videoProducts);
+      const res = await API.get("/products/category/video-editing");
+      setProducts(res.data);
     } catch (error) {
       console.log(error);
     }

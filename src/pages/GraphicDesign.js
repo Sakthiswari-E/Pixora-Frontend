@@ -18,23 +18,20 @@ function GraphicDesign() {
   const [products, setProducts] = useState([]);
   const [preview, setPreview] = useState(null);
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await API.get(
+          "/products/category/graphic-design"
+        );
+
+        setProducts(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchProducts();
   }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const res = await API.get("/products");
-
-      const graphicProducts = res.data.filter(
-        (item) =>
-          item.category === "graphic-design"
-      );
-
-      setProducts(graphicProducts);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
