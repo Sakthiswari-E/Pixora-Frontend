@@ -334,7 +334,7 @@ Please contact me regarding this project.
                     text-transparent
                     "
                   >
-                    ₹{product.price}
+                  ₹{product.price} {product.priceLabel || ""}
                   </p>
 
                 </div>
