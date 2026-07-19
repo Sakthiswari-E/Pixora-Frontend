@@ -220,6 +220,7 @@ Please contact me regarding this project.
               <div className="relative overflow-hidden h-72">
 
                 <img
+                  loading="lazy"
                   src={product.images?.[currentImages[product._id] || 0]}
                   alt={product.name}
                   onClick={() =>

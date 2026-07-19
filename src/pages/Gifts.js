@@ -212,6 +212,7 @@ Please contact me regarding this project.
                     onClick={() => setSelectedVideo(product.video)}
                   >
                     <img
+                      loading="lazy"
                       src={product.images?.[0]}
                       alt={product.name}
                       onClick={() =>
@@ -261,6 +262,7 @@ Please contact me regarding this project.
 
                   <>
                     <img
+                      loading="lazy"
                       src={
                         product.images?.[
                         currentImages[product._id] || 0
