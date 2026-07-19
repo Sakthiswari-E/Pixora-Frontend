@@ -4,12 +4,12 @@ function Portfolio() {
   const [preview, setPreview] = useState(null);
   const projects = [
     {
-      title: "Wedding Invitation Design",
+      title: "Photo Editing design",
       media: "/assets/photo-editing/photoediting4.jpg",
       type: "image",
     },
     {
-      title: "Event Banner Design",
+      title: "Invitation Design",
       media: "/assets/invitation and banners/image2.jpg",
       type: "image",
     },
