@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
-
+import ProductSkeleton from "../components/ProductSkeleton";
 
 
 const services = [
@@ -17,9 +17,12 @@ function GraphicDesign() {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true);
+
         const res = await API.get(
           "/products/category/graphic-design"
         );
@@ -27,9 +30,10 @@ function GraphicDesign() {
         setProducts(res.data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
-
     fetchProducts();
   }, []);
 
@@ -174,64 +178,73 @@ Please contact me regarding this project.
 
         <div className="space-y-12">
 
-          {filteredProducts.map((product) => (
+          {loading ? (
 
-            <motion.div
-              key={product._id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.01 }}
-              className="
-              bg-[#111]
-              rounded-3xl
-              overflow-hidden
-              border
-              border-fuchsia-500/20
-              hover:border-fuchsia-500/40
-              transition-all
-              duration-500
-              "
-            >
-              <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {[...Array(8)].map((_, index) => (
+                <ProductSkeleton key={index} />
+              ))}
+            </div>
 
-                {/* Left Side Preview */}
-                <div className="bg-black flex items-center justify-center p-4">
+          ) : (
+            filteredProducts.map((product) => (
 
-                  {product.images?.[0]?.match(/\.(mp4|webm|ogg)$/i) ? (
-                    <video
-                      controls
-                      onClick={() =>
-                        setPreview({
-                          type: "video",
-                          src: product.images[0],
-                        })
-                      }
-                      className="
+              <motion.div
+                key={product._id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.01 }}
+                className="
+                  bg-[#111]
+                  rounded-3xl
+                  overflow-hidden
+                  border
+                  border-fuchsia-500/20
+                  hover:border-fuchsia-500/40
+                  transition-all
+                  duration-500
+                  "
+              >
+                <div className="grid lg:grid-cols-2 gap-6">
+
+                  {/* Left Side Preview */}
+                  <div className="bg-black flex items-center justify-center p-4">
+
+                    {product.images?.[0]?.match(/\.(mp4|webm|ogg)$/i) ? (
+                      <video
+                        controls
+                        onClick={() =>
+                          setPreview({
+                            type: "video",
+                            src: product.images[0],
+                          })
+                        }
+                        className="
                       w-full
                       h-[600px]
                       object-contain
                       rounded-2xl
                       cursor-pointer
                       "
-                    >
-                      <source
+                      >
+                        <source
+                          src={product.images[0]}
+                          type="video/mp4"
+                        />
+                      </video>
+
+                    ) : (
+
+                      <img
                         src={product.images[0]}
-                        type="video/mp4"
-                      />
-                    </video>
-
-                  ) : (
-
-                    <img
-                      src={product.images[0]}
-                      alt={product.name}
-                      onClick={() =>
-                        setPreview({
-                          type: "image",
-                          src: `${product.images[0]}`
-                        })
-                      }
-                      className="
+                        alt={product.name}
+                        onClick={() =>
+                          setPreview({
+                            type: "image",
+                            src: `${product.images[0]}`
+                          })
+                        }
+                        className="
                       w-full
                       h-[500px]
                       object-contain
@@ -240,17 +253,17 @@ Please contact me regarding this project.
                       hover:scale-[1.02]
                       transition
                       "
-                    />
+                      />
 
-                  )}
+                    )}
 
-                </div>
+                  </div>
 
-                {/* Right Side Details */}
-                <div className="p-10 flex flex-col justify-center">
+                  {/* Right Side Details */}
+                  <div className="p-10 flex flex-col justify-center">
 
-                  <span
-                    className="
+                    <span
+                      className="
                       bg-fuchsia-500
                       px-4
                       py-2
@@ -259,37 +272,37 @@ Please contact me regarding this project.
                       w-fit
                       mb-6
                       "
-                  >
-                    {product.category}
-                  </span>
+                    >
+                      {product.category}
+                    </span>
 
-                  <h2 className="text-4xl font-black mb-4">
-                    {product.name}
-                  </h2>
+                    <h2 className="text-4xl font-black mb-4">
+                      {product.name}
+                    </h2>
 
-                  <div className="flex items-center gap-2 text-yellow-300 mb-4">
-                    <FaStar />
-                    {product.rating}
-                  </div>
+                    <div className="flex items-center gap-2 text-yellow-300 mb-4">
+                      <FaStar />
+                      {product.rating}
+                    </div>
 
-                  <p className="text-gray-300 text-lg mb-8">
-                    {product.description}
-                  </p>
+                    <p className="text-gray-300 text-lg mb-8">
+                      {product.description}
+                    </p>
 
-                  {/* Banner Sizes */}
-                  {product.bannerSizes?.length > 0 && (
-                    <div className="mb-8">
+                    {/* Banner Sizes */}
+                    {product.bannerSizes?.length > 0 && (
+                      <div className="mb-8">
 
-                      <h4 className="text-xl font-bold mb-4">
-                        Banner Sizes & Prices
-                      </h4>
+                        <h4 className="text-xl font-bold mb-4">
+                          Banner Sizes & Prices
+                        </h4>
 
-                      <div className="space-y-3">
+                        <div className="space-y-3">
 
-                        {product.bannerSizes.map((item, index) => (
-                          <div
-                            key={index}
-                            className="
+                          {product.bannerSizes.map((item, index) => (
+                            <div
+                              key={index}
+                              className="
                             flex
                             justify-between
                             items-center
@@ -302,25 +315,25 @@ Please contact me regarding this project.
                             hover:border-fuchsia-500/40
                             transition
                             "
-                          >
-                            <span className="font-medium">
-                              {item.size}
-                            </span>
+                            >
+                              <span className="font-medium">
+                                {item.size}
+                              </span>
 
-                            <span className="text-fuchsia-400 font-bold text-lg">
-                              ₹{item.price}
-                            </span>
-                          </div>
-                        ))}
+                              <span className="text-fuchsia-400 font-bold text-lg">
+                                ₹{item.price}
+                              </span>
+                            </div>
+                          ))}
+
+                        </div>
 
                       </div>
+                    )}
 
-                    </div>
-                  )}
-
-                  <button
-                    onClick={() => handleBuyNow(product)}
-                    className="
+                    <button
+                      onClick={() => handleBuyNow(product)}
+                      className="
                       w-full
                       py-5
                       rounded-2xl
@@ -336,16 +349,17 @@ Please contact me regarding this project.
                       shadow-lg
                       shadow-fuchsia-500/30
                       "
-                  >
-                    Buy
-                  </button>
+                    >
+                      Buy
+                    </button>
+
+                  </div>
 
                 </div>
+              </motion.div>
 
-              </div>
-            </motion.div>
-
-          ))}
+            ))
+          )}
         </div>
 
         {preview && (

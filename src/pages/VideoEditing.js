@@ -2,21 +2,25 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
+import ProductSkeleton from "../components/ProductSkeleton";
 
 function VideoEditing() {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const res = await API.get("/products/category/video-editing");
       setProducts(res.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -174,8 +178,15 @@ Please contact me regarding this project.
       </section>
       {/* Featured Video */}
       <section className="max-w-7xl mx-auto px-6 pb-20">
-        <div className="space-y-12">
-          {filteredProducts.map((product) => (
+        {loading ? (
+          <div className="space-y-12">
+            {[...Array(3)].map((_, index) => (
+              <ProductSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-12">
+            {filteredProducts.map((product) => (
 
             <motion.div
               key={product._id}
@@ -288,6 +299,7 @@ Please contact me regarding this project.
 
           ))}
         </div>
+        )}
       </section>
 
       <section className="max-w-4xl mx-auto px-6 py-20">

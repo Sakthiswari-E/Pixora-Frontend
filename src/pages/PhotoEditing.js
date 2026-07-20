@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
+import ProductSkeleton from "../components/ProductSkeleton";
 
 function PhotoEditing() {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [currentImages, setCurrentImages] = useState({});
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchProducts();
@@ -24,10 +26,13 @@ function PhotoEditing() {
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const res = await API.get("/products/category/photo-editing");
       setProducts(res.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -171,30 +176,38 @@ Please contact me regarding this project.
 
       {/* Products */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
+        {loading ? (
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+            {[...Array(8)].map((_, index) => (
+              <ProductSkeleton key={index} />
+            ))}
+          </div>
 
-          {filteredProducts.map((product, index) => (
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
 
-            <motion.div
-              key={product._id}
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
-              }}
-              whileHover={{
-                y: -12,
-                scale: 1.03,
-              }}
-              className="
+            {filteredProducts.map((product, index) => (
+
+              <motion.div
+                key={product._id}
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                }}
+                whileHover={{
+                  y: -12,
+                  scale: 1.03,
+                }}
+                className="
               group
               bg-gradient-to-b
               from-[#111]
@@ -209,22 +222,22 @@ Please contact me regarding this project.
               transition-all
               duration-500
               "
-            >
+              >
 
-              {/* Image Section */}
-              <div className="relative overflow-hidden h-72">
+                {/* Image Section */}
+                <div className="relative overflow-hidden h-72">
 
-                <img
-                  loading="lazy"
-                  src={product.images?.[currentImages[product._id] || 0]}
-                  alt={product.name}
-                  onClick={() =>
-                    setPreview({
-                      type: "image",
-                      src: product.images?.[currentImages[product._id] || 0],
-                    })
-                  }
-                  className="
+                  <img
+                    loading="lazy"
+                    src={product.images?.[currentImages[product._id] || 0]}
+                    alt={product.name}
+                    onClick={() =>
+                      setPreview({
+                        type: "image",
+                        src: product.images?.[currentImages[product._id] || 0],
+                      })
+                    }
+                    className="
                   w-full
                   h-full
                   object-cover
@@ -233,22 +246,22 @@ Please contact me regarding this project.
                   group-hover:scale-110
                   cursor-zoom-in
                 "
-                />
+                  />
 
-                {/* Multiple Images */}
-                {product.images?.length > 1 && (
-                  <>
-                    <button
-                      onClick={() =>
-                        setCurrentImages((prev) => ({
-                          ...prev,
-                          [product._id]:
-                            (prev[product._id] || 0) === 0
-                              ? product.images.length - 1
-                              : (prev[product._id] || 0) - 1,
-                        }))
-                      }
-                      className="
+                  {/* Multiple Images */}
+                  {product.images?.length > 1 && (
+                    <>
+                      <button
+                        onClick={() =>
+                          setCurrentImages((prev) => ({
+                            ...prev,
+                            [product._id]:
+                              (prev[product._id] || 0) === 0
+                                ? product.images.length - 1
+                                : (prev[product._id] || 0) - 1,
+                          }))
+                        }
+                        className="
                       absolute
                       left-2
                       top-1/2
@@ -259,20 +272,20 @@ Please contact me regarding this project.
                       rounded-full
                       text-white
                       "
-                    >
-                      ◀
-                    </button>
+                      >
+                        ◀
+                      </button>
 
-                    <button
-                      onClick={() =>
-                        setCurrentImages((prev) => ({
-                          ...prev,
-                          [product._id]:
-                            ((prev[product._id] || 0) + 1) %
-                            product.images.length,
-                        }))
-                      }
-                      className="
+                      <button
+                        onClick={() =>
+                          setCurrentImages((prev) => ({
+                            ...prev,
+                            [product._id]:
+                              ((prev[product._id] || 0) + 1) %
+                              product.images.length,
+                          }))
+                        }
+                        className="
                       absolute
                       right-2
                       top-1/2
@@ -283,42 +296,42 @@ Please contact me regarding this project.
                       rounded-full
                       text-white
                       "
-                    >
-                      ▶
-                    </button>
-                  </>
-                )}
-
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-
-                <div className="flex justify-between items-start mb-3">
-
-                  <h3 className="text-lg font-bold">
-                    {product.name}
-                  </h3>
-
-                  <div className="flex items-center gap-1 text-yellow-400">
-                    <FaStar />
-                    <span>{product.rating}</span>
-                  </div>
+                      >
+                        ▶
+                      </button>
+                    </>
+                  )}
 
                 </div>
 
-                <p className="text-gray-400 text-sm mb-4">
-                  {product.description}
-                </p>
+                {/* Content */}
+                <div className="p-5">
 
-                <div className="mb-6">
+                  <div className="flex justify-between items-start mb-3">
 
-                  <p className="line-through text-gray-500 text-sm">
-                    ₹{product.originalPrice}
+                    <h3 className="text-lg font-bold">
+                      {product.name}
+                    </h3>
+
+                    <div className="flex items-center gap-1 text-yellow-400">
+                      <FaStar />
+                      <span>{product.rating}</span>
+                    </div>
+
+                  </div>
+
+                  <p className="text-gray-400 text-sm mb-4">
+                    {product.description}
                   </p>
 
-                  <p
-                    className="
+                  <div className="mb-6">
+
+                    <p className="line-through text-gray-500 text-sm">
+                      ₹{product.originalPrice}
+                    </p>
+
+                    <p
+                      className="
                     text-3xl
                     font-black
                     bg-gradient-to-r
@@ -328,15 +341,15 @@ Please contact me regarding this project.
                     bg-clip-text
                     text-transparent
                     "
-                  >
-                    ₹{product.price} {product.priceLabel || ""}
-                  </p>
+                    >
+                      ₹{product.price} {product.priceLabel || ""}
+                    </p>
 
-                </div>
+                  </div>
 
-                <button
-                  onClick={() => handleBuyNow(product)}
-                  className="
+                  <button
+                    onClick={() => handleBuyNow(product)}
+                    className="
                   w-full
                   bg-gradient-to-r
                   from-pink-400
@@ -353,18 +366,18 @@ Please contact me regarding this project.
                   shadow-lg
                   shadow-fuchsia-500/30
                   "
-                >
-                  Order Editing
-                </button>
+                  >
+                    Order Editing
+                  </button>
 
-              </div>
+                </div>
 
-            </motion.div>
+              </motion.div>
 
-          ))}
+            ))}
 
-        </div>
-
+          </div>
+        )}
 
         {preview && (
           <div

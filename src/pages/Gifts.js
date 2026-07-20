@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import { motion } from "framer-motion";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
+import ProductSkeleton from "../components/ProductSkeleton";
 
 function Gifts() {
   const [search, setSearch] = useState("");
@@ -9,11 +10,14 @@ function Gifts() {
   const [currentImages, setCurrentImages] = useState({});
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchProducts();
   }, []);
   const fetchProducts = async () => {
     try {
+      setLoading(true);
+
       const [framesRes, giftsRes] = await Promise.all([
         API.get("/products/category/Frames"),
         API.get("/products/category/gifts"),
@@ -25,6 +29,8 @@ function Gifts() {
       ]);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -163,30 +169,39 @@ Please contact me regarding this project.
 
       {/* Product Grid */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
+        {loading ? (
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+            {[...Array(8)].map((_, index) => (
+              <ProductSkeleton key={index} />
+            ))}
+          </div>
 
-          {filteredProducts.map((product, index) => (
+        ) : (
 
-            <motion.div
-              key={product._id}
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
-              }}
-              whileHover={{
-                y: -12,
-                scale: 1.03,
-              }}
-              className="
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+
+            {filteredProducts.map((product, index) => (
+
+              <motion.div
+                key={product._id}
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                }}
+                whileHover={{
+                  y: -12,
+                  scale: 1.03,
+                }}
+                className="
               group
               bg-gradient-to-b
               from-[#111]
@@ -200,28 +215,28 @@ Please contact me regarding this project.
              hover:shadow-fuchsia-500/20
               transition
               "
-            >
+              >
 
-              {/* Product Image */}
-              <div className="relative overflow-hidden h-72">
+                {/* Product Image */}
+                <div className="relative overflow-hidden h-72">
 
-                {product.video ? (
+                  {product.video ? (
 
-                  <div
-                    className="relative w-full h-full cursor-pointer"
-                    onClick={() => setSelectedVideo(product.video)}
-                  >
-                    <img
-                      loading="lazy"
-                      src={product.images?.[0]}
-                      alt={product.name}
-                      onClick={() =>
-                        setPreview({
-                          type: "video",
-                          src: `${product.images[0]}`
-                        })
-                      }
-                      className="
+                    <div
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={() => setSelectedVideo(product.video)}
+                    >
+                      <img
+                        loading="lazy"
+                        src={product.images?.[0]}
+                        alt={product.name}
+                        onClick={() =>
+                          setPreview({
+                            type: "video",
+                            src: `${product.images[0]}`
+                          })
+                        }
+                        className="
                       w-full
                       h-full
                       object-cover
@@ -229,10 +244,10 @@ Please contact me regarding this project.
                       duration-700
                       group-hover:scale-110
                       "
-                    />
+                      />
 
-                    <div
-                      className="
+                      <div
+                        className="
                       absolute
                       inset-0
                       flex
@@ -240,9 +255,9 @@ Please contact me regarding this project.
                       justify-center
                       bg-black/30
                       "
-                    >
-                      <div
-                        className="
+                      >
+                        <div
+                          className="
                         bg-white/20
                         backdrop-blur-md
                         px-5
@@ -252,30 +267,30 @@ Please contact me regarding this project.
                         font-bold
                         text-lg
                         "
-                      >
-                        ▶ Play Video
+                        >
+                          ▶ Play Video
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                ) : (
+                  ) : (
 
-                  <>
-                    <img
-                      loading="lazy"
-                      src={
-                        product.images?.[
-                        currentImages[product._id] || 0
-                        ]
-                      }
-                      onClick={() =>
-                        setPreview({
-                          type: "image",
-                          src: `${product.images[0]}`
-                        })
-                      }
-                      alt={product.name}
-                      className="
+                    <>
+                      <img
+                        loading="lazy"
+                        src={
+                          product.images?.[
+                          currentImages[product._id] || 0
+                          ]
+                        }
+                        onClick={() =>
+                          setPreview({
+                            type: "image",
+                            src: `${product.images[0]}`
+                          })
+                        }
+                        alt={product.name}
+                        className="
                       w-full
                       h-full
                       object-cover
@@ -283,21 +298,21 @@ Please contact me regarding this project.
                       duration-700
                       group-hover:scale-110
                       "
-                    />
+                      />
 
-                    {product.images?.length > 1 && (
-                      <>
-                        <button
-                          onClick={() =>
-                            setCurrentImages((prev) => ({
-                              ...prev,
-                              [product._id]:
-                                (prev[product._id] || 0) === 0
-                                  ? product.images.length - 1
-                                  : (prev[product._id] || 0) - 1,
-                            }))
-                          }
-                          className="
+                      {product.images?.length > 1 && (
+                        <>
+                          <button
+                            onClick={() =>
+                              setCurrentImages((prev) => ({
+                                ...prev,
+                                [product._id]:
+                                  (prev[product._id] || 0) === 0
+                                    ? product.images.length - 1
+                                    : (prev[product._id] || 0) - 1,
+                              }))
+                            }
+                            className="
                           absolute
                           left-2
                           top-1/2
@@ -308,20 +323,20 @@ Please contact me regarding this project.
                           rounded-full
                           text-white
                           "
-                        >
-                          ◀
-                        </button>
+                          >
+                            ◀
+                          </button>
 
-                        <button
-                          onClick={() =>
-                            setCurrentImages((prev) => ({
-                              ...prev,
-                              [product._id]:
-                                ((prev[product._id] || 0) + 1) %
-                                product.images.length,
-                            }))
-                          }
-                          className="
+                          <button
+                            onClick={() =>
+                              setCurrentImages((prev) => ({
+                                ...prev,
+                                [product._id]:
+                                  ((prev[product._id] || 0) + 1) %
+                                  product.images.length,
+                              }))
+                            }
+                            className="
                           absolute
                           right-2
                           top-1/2
@@ -332,55 +347,55 @@ Please contact me regarding this project.
                           rounded-full
                           text-white
                           "
-                        >
-                          ▶
-                        </button>
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
-              {/* Product Content */}
-              <div className="p-5">
+                          >
+                            ▶
+                          </button>
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
+                {/* Product Content */}
+                <div className="p-5">
 
-                {/* Name + Rating */}
-                <div className="flex justify-between items-start mb-3">
+                  {/* Name + Rating */}
+                  <div className="flex justify-between items-start mb-3">
 
-                  <h3 className="text-lg font-bold leading-tight">
-                    {product.name}
-                  </h3>
+                    <h3 className="text-lg font-bold leading-tight">
+                      {product.name}
+                    </h3>
 
-                  <div className="flex items-center gap-1 text-yellow-400">
-                    <FaStar />
-                    <span>{product.rating}</span>
+                    <div className="flex items-center gap-1 text-yellow-400">
+                      <FaStar />
+                      <span>{product.rating}</span>
+                    </div>
+
                   </div>
 
-                </div>
+                  {/* Size */}
+                  <div className="flex justify-between items-center mb-4">
 
-                {/* Size */}
-                <div className="flex justify-between items-center mb-4">
+                    <span className="text-gray-400">
+                      Size
+                    </span>
 
-                  <span className="text-gray-400">
-                    Size
-                  </span>
+                    <span className="text-gray-300">
+                      {product.size}
+                    </span>
 
-                  <span className="text-gray-300">
-                    {product.size}
-                  </span>
+                  </div>
 
-                </div>
+                  {/* Price Section */}
+                  <div className="flex justify-between items-center mb-6">
 
-                {/* Price Section */}
-                <div className="flex justify-between items-center mb-6">
+                    <div>
 
-                  <div>
+                      <p className="text-gray-500 line-through text-sm">
+                        ₹{product.originalPrice}
+                      </p>
 
-                    <p className="text-gray-500 line-through text-sm">
-                      ₹{product.originalPrice}
-                    </p>
-
-                    <p
-                      className="
+                      <p
+                        className="
                         text-3xl
                         font-bold
                         bg-gradient-to-r
@@ -390,24 +405,24 @@ Please contact me regarding this project.
                         bg-clip-text
                         text-transparent
                         "
-                    >
-                      ₹{product.price}
-                    </p>
+                      >
+                        ₹{product.price}
+                      </p>
+
+                    </div>
+
+                    <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">
+                      In Stock
+                    </div>
 
                   </div>
 
-                  <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">
-                    In Stock
-                  </div>
+                  {/* Buttons */}
+                  <div className="flex gap-3">
 
-                </div>
-
-                {/* Buttons */}
-                <div className="flex gap-3">
-
-                  <button
-                    onClick={() => addToCart(product._id)}
-                    className="
+                    <button
+                      onClick={() => addToCart(product._id)}
+                      className="
                     flex-1
                     flex
                     items-center
@@ -421,14 +436,14 @@ Please contact me regarding this project.
                     hover:text-black
                     transition
                     "
-                  >
-                    <FaShoppingCart />
-                    Cart
-                  </button>
+                    >
+                      <FaShoppingCart />
+                      Cart
+                    </button>
 
-                  <button
-                    onClick={() => handleBuyNow(product)}
-                    className="
+                    <button
+                      onClick={() => handleBuyNow(product)}
+                      className="
                       flex-1
                       bg-gradient-to-r
                       from-pink-400
@@ -449,19 +464,21 @@ Please contact me regarding this project.
                       border
                       border-pink-400/30
                       "
-                  >
-                    Buy Now
-                  </button>
+                    >
+                      Buy Now
+                    </button>
+
+                  </div>
 
                 </div>
 
-              </div>
+              </motion.div>
 
-            </motion.div>
+            ))}
 
-          ))}
+          </div>
 
-        </div>
+        )}
         {selectedVideo && (
           <div
             className="
