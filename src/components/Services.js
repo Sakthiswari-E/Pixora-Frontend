@@ -36,22 +36,22 @@ function Services() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8">
         {services.map((service, index) => (
           <Link
             key={index}
             to={service.path}
-            className="bg-[#111111] border border-white/10 rounded-3xl p-8 hover:border-white hover:-translate-y-2 transition duration-300 block"
+            className="bg-[#111111] border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-8 hover:border-white hover:-translate-y-2 transition duration-300 block"
           >
-            <h3 className="text-2xl font-semibold mb-4">
+            <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-4">
               {service.title}
             </h3>
 
-            <p className="text-gray-400 leading-7 mb-6">
+            <p className="text-gray-400 text-sm md:text-base leading-6 md:leading-7 mb-4 md:mb-6">
               {service.description}
             </p>
 
-            <span className="text-white font-medium">
+            <span className="text-white text-sm md:text-base font-medium">
               View Details →
             </span>
           </Link>
