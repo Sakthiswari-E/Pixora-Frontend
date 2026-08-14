@@ -177,18 +177,14 @@ Please contact me regarding this project.
       {/* Products */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         {loading ? (
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-4 gap-2 md:gap-6">
             {[...Array(8)].map((_, index) => (
               <ProductSkeleton key={index} />
             ))}
           </div>
-
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-
+          <div className="grid grid-cols-4 gap-2 md:gap-6">
             {filteredProducts.map((product, index) => (
-
               <motion.div
                 key={product._id}
                 initial={{
@@ -207,25 +203,11 @@ Please contact me regarding this project.
                   y: -12,
                   scale: 1.03,
                 }}
-                className="
-              group
-              bg-gradient-to-b
-              from-[#111]
-              to-[#1b1b1b]
-              rounded-3xl
-              overflow-hidden
-              border
-              border-white/10
-              hover:border-fuchsia-500/40
-              shadow-xl
-              hover:shadow-fuchsia-500/20
-              transition-all
-              duration-500
-              "
+                className="group bg-gradient-to-b from-[#111] to-[#1b1b1b] rounded-xl md:rounded-3xl overflow-hidden border border-white/10 hover:border-fuchsia-500/40 shadow-lg hover:shadow-fuchsia-500/20 transition-all duration-500"
               >
 
                 {/* Image Section */}
-                <div className="relative overflow-hidden h-72">
+                <div className="relative overflow-hidden h-28 sm:h-36 md:h-60 lg:h-72">
 
                   <img
                     loading="lazy"
@@ -305,22 +287,22 @@ Please contact me regarding this project.
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
+                <div className="p-2 sm:p-3 md:p-5">
 
                   <div className="flex justify-between items-start mb-3">
 
-                    <h3 className="text-lg font-bold">
+                    <h3 className="text-[10px] sm:text-xs md:text-lg font-bold leading-tight">
                       {product.name}
                     </h3>
 
-                    <div className="flex items-center gap-1 text-yellow-400">
-                      <FaStar />
+                    <div className="flex items-center gap-0.5 text-yellow-400 text-[9px] sm:text-xs md:text-base">
+                      <FaStar className="text-[8px] sm:text-[10px] md:text-base" />
                       <span>{product.rating}</span>
                     </div>
 
                   </div>
 
-                  <p className="text-gray-400 text-sm mb-4">
+                  <p className="text-gray-400 text-[9px] sm:text-[10px] md:text-sm mb-2 md:mb-4 line-clamp-2">
                     {product.description}
                   </p>
 
@@ -331,16 +313,7 @@ Please contact me regarding this project.
                     </p>
 
                     <p
-                      className="
-                    text-3xl
-                    font-black
-                    bg-gradient-to-r
-                    from-pink-400
-                    via-fuchsia-500
-                    to-violet-600
-                    bg-clip-text
-                    text-transparent
-                    "
+                      className="text-sm sm:text-base md:text-3xl font-black bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent"
                     >
                       ₹{product.price} {product.priceLabel || ""}
                     </p>
@@ -349,25 +322,10 @@ Please contact me regarding this project.
 
                   <button
                     onClick={() => handleBuyNow(product)}
-                    className="
-                  w-full
-                  bg-gradient-to-r
-                  from-pink-400
-                  via-fuchsia-500
-                  to-violet-600
-                  text-white
-                  py-3
-                  rounded-xl
-                  font-bold
-                  transition-all
-                  duration-500
-                  hover:scale-105
-                  hover:brightness-125
-                  shadow-lg
-                  shadow-fuchsia-500/30
-                  "
+                    className="w-full bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 text-white py-2 md:py-3 rounded-lg md:rounded-xl text-[9px] sm:text-[10px] md:text-base font-bold transition-all duration-500 hover:scale-105 hover:brightness-125 shadow-lg shadow-fuchsia-500/30"
                   >
-                    Order Editing
+                    <span className="md:hidden">Order</span>
+                    <span className="hidden md:inline">Order Editing</span>
                   </button>
 
                 </div>
@@ -401,7 +359,7 @@ Please contact me regarding this project.
               top-6
               right-6
               text-white
-              text-5xl
+              text-3xl
               hover:text-fuchsia-400
               z-50
             "
