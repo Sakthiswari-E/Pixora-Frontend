@@ -23,7 +23,7 @@ function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="py-24 px-6 md:px-20 bg- black border-t border-white/10"
+      className="py-24 px-6 md:px-20 bg-black border-t border-white/10"
     >
       <div className="text-center mb-16">
 
@@ -37,27 +37,27 @@ function Portfolio() {
 
       </div>
 
+
       {/* Project Showcase */}
-      {/* Project Showcase */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-24 md:mb-40">
 
         {projects.map((project, index) => (
           <div
             key={index}
             className="
-      bg-[#111]
-      rounded-3xl
-      overflow-hidden
-      border
-      border-white/10
-      hover:border-fuchsia-500
-      transition-all
-      duration-300
-      hover:-translate-y-2
-      "
+            bg-[#111]
+            rounded-3xl
+            overflow-hidden
+            border
+            border-white/10
+            hover:border-fuchsia-500
+            transition-all
+            duration-300
+            hover:-translate-y-2
+            "
           >
 
-            <div className="h-72 bg-black flex items-center justify-center overflow-hidden">
+            <div className="h-48 md:h-72 bg-black flex items-center justify-center overflow-hidden">
 
               {project.type === "image" ? (
 
@@ -107,8 +107,8 @@ function Portfolio() {
 
             </div>
 
-            <div className="p-6">
-              <h3 className="text-xl font-bold">
+            <div className="p-4 md:p-6">
+              <h3 className="text-base md:text-xl font-bold">
                 {project.title}
               </h3>
             </div>
