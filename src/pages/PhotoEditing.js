@@ -177,7 +177,7 @@ Please contact me regarding this project.
       {/* Products */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8">
             {[...Array(8)].map((_, index) => (
               <ProductSkeleton key={index} />
             ))}
