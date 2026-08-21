@@ -160,11 +160,11 @@ Please contact me regarding this project.
           Editing Services
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-[#111111] border border-white/10 rounded-2xl md:rounded-3xl p-3 md:p-8 text-center hover:border-white transition"
+              className="group bg-gradient-to-b from-[#111] to-[#1b1b1b] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 hover:border-fuchsia-500/40 shadow-lg hover:shadow-fuchsia-500/20 transition-all duration-500"
             >
               <h3 className="text-xl font-semibold">
                 {service}
@@ -207,7 +207,7 @@ Please contact me regarding this project.
               >
 
                 {/* Image Section */}
-                <div className="relative overflow-hidden h-28 sm:h-36 md:h-60 lg:h-72">
+                <div className="relative overflow-hidden h-44 sm:h-52 md:h-60 lg:h-72">
 
                   <img
                     loading="lazy"
@@ -287,11 +287,11 @@ Please contact me regarding this project.
                 </div>
 
                 {/* Content */}
-                <div className="p-2 sm:p-3 md:p-5">
+                <div className="p-3 sm:p-4 md:p-5">
 
                   <div className="flex justify-between items-start mb-3">
 
-                    <h3 className="text-[10px] sm:text-xs md:text-lg font-bold leading-tight">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold leading-tight">
                       {product.name}
                     </h3>
 
@@ -302,7 +302,7 @@ Please contact me regarding this project.
 
                   </div>
 
-                  <p className="text-gray-400 text-[9px] sm:text-[10px] md:text-sm mb-2 md:mb-4 line-clamp-2">
+                  <p className="text-gray-400 text-xs sm:text-sm md:text-sm mb-3 md:mb-4 line-clamp-2">
                     {product.description}
                   </p>
 
@@ -313,7 +313,7 @@ Please contact me regarding this project.
                     </p>
 
                     <p
-                      className="text-sm sm:text-base md:text-3xl font-black bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent"
+                      className="text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent"
                     >
                       ₹{product.price} {product.priceLabel || ""}
                     </p>
