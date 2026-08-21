@@ -213,7 +213,7 @@ Please contact me regarding this project.
               >
 
                 {/* Image Section */}
-                <div className="relative overflow-hidden h-44 sm:h-52 md:h-60 lg:h-72">
+                <div className="relative overflow-hidden h-48 sm:h-52 md:h-60 lg:h-72">
 
                   <img
                     loading="lazy"
@@ -225,15 +225,7 @@ Please contact me regarding this project.
                         src: product.images?.[currentImages[product._id] || 0],
                       })
                     }
-                    className="
-                  w-full
-                  h-full
-                  object-cover
-                  transition-all
-                  duration-700
-                  group-hover:scale-110
-                  cursor-zoom-in
-                "
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 cursor-zoom-in"
                   />
 
                   {/* Multiple Images */}
@@ -249,17 +241,7 @@ Please contact me regarding this project.
                                 : (prev[product._id] || 0) - 1,
                           }))
                         }
-                        className="
-                      absolute
-                      left-2
-                      top-1/2
-                      -translate-y-1/2
-                      bg-black/60
-                      px-3
-                      py-2
-                      rounded-full
-                      text-white
-                      "
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 px-2 py-1.5 md:px-3 md:py-2 rounded-full text-white text-xs md:text-base"
                       >
                         ◀
                       </button>
@@ -273,18 +255,7 @@ Please contact me regarding this project.
                               product.images.length,
                           }))
                         }
-                        className="
-                      absolute
-                      right-2
-                      top-1/2
-                      -translate-y-1/2
-                      bg-black/60
-                      px-3
-                      py-2
-                      rounded-full
-                      text-white
-                      "
-                      >
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 px-2 py-1.5 md:px-3 md:py-2 rounded-full text-white text-xs md:text-base">
                         ▶
                       </button>
                     </>
@@ -295,14 +266,14 @@ Please contact me regarding this project.
                 {/* Content */}
                 <div className="p-3 sm:p-4 md:p-5">
 
-                  <div className="flex justify-between items-start mb-3">
+                  <div className="flex justify-between items-start gap-2 mb-3">
 
                     <h3 className="text-sm sm:text-base md:text-lg font-bold leading-tight">
                       {product.name}
                     </h3>
 
-                    <div className="flex items-center gap-0.5 text-yellow-400 text-[9px] sm:text-xs md:text-base">
-                      <FaStar className="text-[8px] sm:text-[10px] md:text-base" />
+                    <div className="flex shrink-0 items-center gap-1 text-yellow-400 text-[10px] sm:text-xs md:text-base">
+                      <FaStar className="text-[9px] sm:text-[10px] md:text-base" />
                       <span>{product.rating}</span>
                     </div>
 
@@ -312,15 +283,13 @@ Please contact me regarding this project.
                     {product.description}
                   </p>
 
-                  <div className="mb-6">
+                  <div className="mb-4 md:mb-6">
 
-                    <p className="line-through text-gray-500 text-sm">
+                    <p className="line-through text-gray-500 text-xs sm:text-sm">
                       ₹{product.originalPrice}
                     </p>
 
-                    <p
-                      className="text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent"
-                    >
+                    <p className="text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent">
                       ₹{product.price} {product.priceLabel || ""}
                     </p>
 
@@ -328,12 +297,11 @@ Please contact me regarding this project.
 
                   <button
                     onClick={() => handleBuyNow(product)}
-                    className="w-full bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 text-white py-2 md:py-3 rounded-lg md:rounded-xl text-[9px] sm:text-[10px] md:text-base font-bold transition-all duration-500 hover:scale-105 hover:brightness-125 shadow-lg shadow-fuchsia-500/30"
+                    className="w-full bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 text-white py-2.5 md:py-3 rounded-lg md:rounded-xl text-xs sm:text-sm md:text-base font-bold transition-all duration-500 hover:scale-105 hover:brightness-125 shadow-lg shadow-fuchsia-500/30"
                   >
                     <span className="md:hidden">Order</span>
                     <span className="hidden md:inline">Order Editing</span>
                   </button>
-
                 </div>
 
               </motion.div>
@@ -341,12 +309,14 @@ Please contact me regarding this project.
             ))}
 
           </div>
-        )}
+        )
+        }
 
-        {preview && (
-          <div
-            onClick={() => setPreview(null)}
-            className="
+        {
+          preview && (
+            <div
+              onClick={() => setPreview(null)}
+              className="
             fixed
             inset-0
             z-50
@@ -356,11 +326,11 @@ Please contact me regarding this project.
             justify-center
             p-6
           "
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setPreview(null)}
-              className="
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setPreview(null)}
+                className="
               absolute
               top-6
               right-6
@@ -369,42 +339,43 @@ Please contact me regarding this project.
               hover:text-fuchsia-400
               z-50
             "
-            >
-              ✕
-            </button>
+              >
+                ✕
+              </button>
 
-            {preview.type === "image" ? (
-              <img
-                src={preview.src}
-                alt="Preview"
-                onClick={(e) => e.stopPropagation()}
-                className="
+              {preview.type === "image" ? (
+                <img
+                  src={preview.src}
+                  alt="Preview"
+                  onClick={(e) => e.stopPropagation()}
+                  className="
                 max-w-[95vw]
                 max-h-[95vh]
                 object-contain
                 rounded-3xl
               "
-              />
-            ) : (
-              <video
-                controls
-                autoPlay
-                onClick={(e) => e.stopPropagation()}
-                className="
+                />
+              ) : (
+                <video
+                  controls
+                  autoPlay
+                  onClick={(e) => e.stopPropagation()}
+                  className="
                 max-w-[95vw]
                 max-h-[95vh]
                 rounded-3xl
               "
-              >
-                <source src={preview.src} type="video/mp4" />
-              </video>
-            )}
-          </div>
-        )}
+                >
+                  <source src={preview.src} type="video/mp4" />
+                </video>
+              )}
+            </div>
+          )
+        }
 
 
 
-      </section>
+      </section >
 
       <section className="max-w-4xl mx-auto px-6 py-20">
         <h2 className="text-4xl font-bold text-center mb-12">
@@ -470,7 +441,7 @@ Please contact me regarding this project.
         </form>
       </section>
 
-    </div>
+    </div >
   );
 }
 
