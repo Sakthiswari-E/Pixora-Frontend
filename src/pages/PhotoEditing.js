@@ -167,11 +167,11 @@ Please contact me regarding this project.
               className="bg-gradient-to-b from-[#151515] to-[#0d0d0d] border border-white/10 rounded-2xl md:rounded-3xl px-3 py-6 sm:px-4 sm:py-7 md:p-8 text-center min-h-[110px] sm:min-h-[125px] md:min-h-[150px] flex items-center justify-center hover:border-fuchsia-500/50 hover:bg-fuchsia-500/5 hover:-translate-y-1 transition-all duration-300 shadow-lg"
             >
               <div>
-                <div className="text-fuchsia-400 text-xs sm:text-sm font-bold mb-2 opacity-70">
+                {/* <div className="text-fuchsia-400 text-xs sm:text-sm font-bold mb-2 opacity-70">
                   0{index + 1}
-                </div>
+                </div> */}
 
-                <h3 className="text-xs sm:text-sm md:text-xl font-semibold leading-snug">
+                <h3 className="text-sm sm:text-sm md:text-xl font-semibold leading-snug">
                   {service}
                 </h3>
               </div>
