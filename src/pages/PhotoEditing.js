@@ -160,11 +160,11 @@ Please contact me regarding this project.
           Editing Services
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-[#111111] border border-white/10 rounded-3xl p-8 text-center hover:border-white transition"
+              className="bg-[#111111] border border-white/10 rounded-2xl md:rounded-3xl p-3 md:p-8 text-center hover:border-white transition"
             >
               <h3 className="text-xl font-semibold">
                 {service}
