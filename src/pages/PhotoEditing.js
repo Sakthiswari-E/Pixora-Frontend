@@ -155,20 +155,26 @@ Please contact me regarding this project.
       </div>
 
       {/* Services */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-14">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-14">
           Editing Services
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-gradient-to-b from-[#111] to-[#1b1b1b] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 hover:border-fuchsia-500/40 shadow-lg hover:shadow-fuchsia-500/20 transition-all duration-500"
+              className="bg-gradient-to-b from-[#151515] to-[#0d0d0d] border border-white/10 rounded-2xl md:rounded-3xl px-3 py-6 sm:px-4 sm:py-7 md:p-8 text-center min-h-[110px] sm:min-h-[125px] md:min-h-[150px] flex items-center justify-center hover:border-fuchsia-500/50 hover:bg-fuchsia-500/5 hover:-translate-y-1 transition-all duration-300 shadow-lg"
             >
-              <h3 className="text-xl font-semibold">
-                {service}
-              </h3>
+              <div>
+                <div className="text-fuchsia-400 text-xs sm:text-sm font-bold mb-2 opacity-70">
+                  0{index + 1}
+                </div>
+
+                <h3 className="text-xs sm:text-sm md:text-xl font-semibold leading-snug">
+                  {service}
+                </h3>
+              </div>
             </div>
           ))}
         </div>
