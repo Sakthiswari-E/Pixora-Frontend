@@ -149,29 +149,26 @@ Please contact me regarding this project.
         />
       </div>
       {/* Services */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-14">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-14">
           Editing Services
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
-              className="
-              bg-[#111]
-              border
-              border-white/10
-              rounded-3xl
-              p-8
-              text-center
-              hover:border-fuchsia-500
-              transition
-              "
+              className="bg-gradient-to-b from-[#151515] to-[#0d0d0d] border border-white/10 rounded-2xl md:rounded-3xl px-3 py-6 sm:px-4 sm:py-7 md:p-8 text-center min-h-[110px] sm:min-h-[125px] md:min-h-[150px] flex items-center justify-center hover:border-fuchsia-500/50 hover:bg-fuchsia-500/5 hover:-translate-y-1 transition-all duration-300 shadow-lg"
             >
-              <h3 className="text-xl font-semibold">
-                {service}
-              </h3>
+              <div>
+                {/* <div className="text-fuchsia-400 text-xs sm:text-sm font-bold mb-2 opacity-70">
+                  0{index + 1}
+                </div> */}
+
+                <h3 className="text-sm sm:text-sm md:text-xl font-semibold leading-snug">
+                  {service}
+                </h3>
+              </div>
             </div>
           ))}
         </div>
@@ -188,12 +185,12 @@ Please contact me regarding this project.
           <div className="space-y-12">
             {filteredProducts.map((product) => (
 
-            <motion.div
-              key={product._id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -5 }}
-              className="
+              <motion.div
+                key={product._id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5 }}
+                className="
               bg-[#111]
               rounded-3xl
               overflow-hidden
@@ -203,31 +200,31 @@ Please contact me regarding this project.
               transition-all
               duration-500
               "
-            >
+              >
 
-              <div className="grid lg:grid-cols-5 ">
+                <div className="grid lg:grid-cols-5 ">
 
-                {/* Video */}
-                <div className="lg:col-span-4 bg-black flex justify-center items-center p-0">
+                  {/* Video */}
+                  <div className="lg:col-span-4 bg-black flex justify-center items-center p-0">
 
-                  <video
-                    controls
-                    src={product.images?.[0]}
-                    className="
+                    <video
+                      controls
+                      src={product.images?.[0]}
+                      className="
                   w-full
                   rounded-2xl
                   aspect-video
                   object-contain
                   "
-                  />
+                    />
 
-                </div>
+                  </div>
 
-                {/* Details */}
-                <div className="lg:col-span-1 p-8 flex flex-col justify-center">
+                  {/* Details */}
+                  <div className="lg:col-span-1 p-8 flex flex-col justify-center">
 
-                  <span
-                    className="
+                    <span
+                      className="
                   bg-fuchsia-500
                   px-3
                   py-1
@@ -236,29 +233,29 @@ Please contact me regarding this project.
                   w-fit
                   mb-4
                   "
-                  >
-                    Featured Project
-                  </span>
+                    >
+                      Featured Project
+                    </span>
 
-                  <h2 className="text-4xl font-black mb-4">
-                    {product.name}
-                  </h2>
+                    <h2 className="text-4xl font-black mb-4">
+                      {product.name}
+                    </h2>
 
-                  <div className="flex items-center gap-2 text-yellow-400 mb-4">
-                    <FaStar />
-                    {product.rating}
-                  </div>
+                    <div className="flex items-center gap-2 text-yellow-400 mb-4">
+                      <FaStar />
+                      {product.rating}
+                    </div>
 
-                  <p className="text-gray-400 mb-6">
-                    {product.description}
-                  </p>
+                    <p className="text-gray-400 mb-6">
+                      {product.description}
+                    </p>
 
-                  <p className="line-through text-gray-500">
-                    ₹{product.originalPrice}
-                  </p>
+                    <p className="line-through text-gray-500">
+                      ₹{product.originalPrice}
+                    </p>
 
-                  <p
-                    className="
+                    <p
+                      className="
                   text-5xl
                   font-black
                   mb-6
@@ -269,13 +266,13 @@ Please contact me regarding this project.
                   bg-clip-text
                   text-transparent
                   "
-                  >
-                    ₹{product.price}
-                  </p>
+                    >
+                      ₹{product.price}
+                    </p>
 
-                  <button
-                    onClick={() => handleBuyNow(product)}
-                    className="
+                    <button
+                      onClick={() => handleBuyNow(product)}
+                      className="
                   bg-gradient-to-r
                   from-pink-400
                   via-fuchsia-500
@@ -287,18 +284,18 @@ Please contact me regarding this project.
                   transition-all
                   duration-500
                   "
-                  >
-                    Get Similar Edit
-                  </button>
+                    >
+                      Get Similar Edit
+                    </button>
+
+                  </div>
 
                 </div>
 
-              </div>
+              </motion.div>
 
-            </motion.div>
-
-          ))}
-        </div>
+            ))}
+          </div>
         )}
       </section>
 
