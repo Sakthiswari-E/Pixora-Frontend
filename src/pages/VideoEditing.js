@@ -176,15 +176,16 @@ Please contact me regarding this project.
       </section>
 
       {/* Featured Video */}
-      <section className="max-w-7xl mx-auto px-6 pb-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16 md:pb-20">
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {[...Array(3)].map((_, index) => (
               <ProductSkeleton key={index} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
             {filteredProducts.map((product) => (
 
               <motion.div
@@ -192,111 +193,59 @@ Please contact me regarding this project.
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -5 }}
-                className="
-              bg-[#111]
-              rounded-3xl
-              overflow-hidden
-              border
-              border-fuchsia-500/20
-              hover:border-fuchsia-500/40
-              transition-all
-              duration-500
-              "
+                className="group bg-gradient-to-b from-[#111] to-[#1b1b1b] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 hover:border-fuchsia-500/40 shadow-lg hover:shadow-fuchsia-500/20 transition-all duration-500"
               >
 
-                <div className="grid lg:grid-cols-5 ">
+                {/* Video */}
+                <div className="bg-black w-full aspect-video overflow-hidden">
+                  <video
+                    controls
+                    src={product.images?.[0]}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-                  {/* Video */}
-                  <div className="lg:col-span-4 bg-black flex justify-center items-center p-0">
+                {/* Details */}
+                <div className="p-4 sm:p-5 md:p-8">
 
-                    <video
-                      controls
-                      src={product.images?.[0]}
-                      className="
-                  w-full
-                  rounded-2xl
-                  aspect-video
-                  object-contain
-                  "
-                    />
+                  <span className="bg-fuchsia-500 px-3 py-1 rounded-full text-[10px] sm:text-xs md:text-sm w-fit inline-block mb-3 md:mb-4">
+                    Featured Project
+                  </span>
 
+                  <h2 className="text-lg sm:text-xl md:text-3xl font-black mb-3 leading-tight">
+                    {product.name}
+                  </h2>
+
+                  <div className="flex items-center gap-2 text-yellow-400 text-sm md:text-base mb-3 md:mb-4">
+                    <FaStar />
+                    {product.rating}
                   </div>
 
-                  {/* Details */}
-                  <div className="lg:col-span-1 p-8 flex flex-col justify-center">
+                  <p className="text-gray-400 text-sm md:text-base mb-4 md:mb-6 line-clamp-2">
+                    {product.description}
+                  </p>
 
-                    <span
-                      className="
-                  bg-fuchsia-500
-                  px-3
-                  py-1
-                  rounded-full
-                  text-sm
-                  w-fit
-                  mb-4
-                  "
-                    >
-                      Featured Project
-                    </span>
+                  <p className="line-through text-gray-500 text-sm">
+                    ₹{product.originalPrice}
+                  </p>
 
-                    <h2 className="text-4xl font-black mb-4">
-                      {product.name}
-                    </h2>
+                  <p className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6 bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent">
+                    ₹{product.price}
+                  </p>
 
-                    <div className="flex items-center gap-2 text-yellow-400 mb-4">
-                      <FaStar />
-                      {product.rating}
-                    </div>
-
-                    <p className="text-gray-400 mb-6">
-                      {product.description}
-                    </p>
-
-                    <p className="line-through text-gray-500">
-                      ₹{product.originalPrice}
-                    </p>
-
-                    <p
-                      className="
-                  text-5xl
-                  font-black
-                  mb-6
-                  bg-gradient-to-r
-                  from-pink-400
-                  via-fuchsia-500
-                  to-violet-600
-                  bg-clip-text
-                  text-transparent
-                  "
-                    >
-                      ₹{product.price}
-                    </p>
-
-                    <button
-                      onClick={() => handleBuyNow(product)}
-                      className="
-                  bg-gradient-to-r
-                  from-pink-400
-                  via-fuchsia-500
-                  to-violet-600
-                  py-4
-                  rounded-xl
-                  font-bold
-                  hover:scale-105
-                  transition-all
-                  duration-500
-                  "
-                    >
-                      Get Similar Edit
-                    </button>
-
-                  </div>
+                  <button
+                    onClick={() => handleBuyNow(product)}
+                    className="w-full bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 py-3 md:py-4 rounded-xl text-sm md:text-base font-bold hover:scale-[1.02] transition-all duration-500"
+                  >
+                    Get Similar Edit
+                  </button>
 
                 </div>
 
               </motion.div>
 
             ))}
+
           </div>
         )}
       </section>
