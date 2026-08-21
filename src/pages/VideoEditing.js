@@ -148,6 +148,7 @@ Please contact me regarding this project.
           "
         />
       </div>
+
       {/* Services */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-14">
@@ -173,16 +174,17 @@ Please contact me regarding this project.
           ))}
         </div>
       </section>
+
       {/* Featured Video */}
       <section className="max-w-7xl mx-auto px-6 pb-20">
         {loading ? (
-          <div className="space-y-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {[...Array(3)].map((_, index) => (
               <ProductSkeleton key={index} />
             ))}
           </div>
         ) : (
-          <div className="space-y-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {filteredProducts.map((product) => (
 
               <motion.div
