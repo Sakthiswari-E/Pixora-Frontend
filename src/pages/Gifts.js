@@ -171,7 +171,7 @@ Please contact me regarding this project.
       <section className="max-w-7xl mx-auto px-6 pb-24">
         {loading ? (
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
             {[...Array(8)].map((_, index) => (
               <ProductSkeleton key={index} />
             ))}
@@ -179,7 +179,7 @@ Please contact me regarding this project.
 
         ) : (
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
 
             {filteredProducts.map((product, index) => (
 
@@ -201,24 +201,11 @@ Please contact me regarding this project.
                   y: -12,
                   scale: 1.03,
                 }}
-                className="
-              group
-              bg-gradient-to-b
-              from-[#111]
-              to-[#1b1b1b]
-              rounded-3xl
-              overflow-hidden
-              border
-              border-white/10
-              hover:border-fuchsia-500/40
-              shadow-xl
-             hover:shadow-fuchsia-500/20
-              transition
-              "
+                className="group bg-gradient-to-b from-[#111] to-[#1b1b1b] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 hover:border-fuchsia-500/40 shadow-lg hover:shadow-fuchsia-500/20 transition-all duration-500"
               >
 
                 {/* Product Image */}
-                <div className="relative overflow-hidden h-72">
+                <div className="relative overflow-hidden h-40 sm:h-48 md:h-60 lg:h-72">
 
                   {product.video ? (
 
@@ -356,16 +343,16 @@ Please contact me regarding this project.
                   )}
                 </div>
                 {/* Product Content */}
-                <div className="p-5">
+                <div className="p-3 sm:p-4 md:p-5">
 
                   {/* Name + Rating */}
                   <div className="flex justify-between items-start mb-3">
 
-                    <h3 className="text-lg font-bold leading-tight">
+                    <h3 className="text-xs sm:text-sm md:text-lg font-bold leading-tight">
                       {product.name}
                     </h3>
 
-                    <div className="flex items-center gap-1 text-yellow-400">
+                    <div className="flex items-center gap-1 text-yellow-400 text-[10px] sm:text-xs md:text-base shrink-0">
                       <FaStar />
                       <span>{product.rating}</span>
                     </div>
@@ -373,8 +360,7 @@ Please contact me regarding this project.
                   </div>
 
                   {/* Size */}
-                  <div className="flex justify-between items-center mb-4">
-
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 mb-3 md:mb-4 text-xs sm:text-sm">
                     <span className="text-gray-400">
                       Size
                     </span>
@@ -394,18 +380,7 @@ Please contact me regarding this project.
                         ₹{product.originalPrice}
                       </p>
 
-                      <p
-                        className="
-                        text-3xl
-                        font-bold
-                        bg-gradient-to-r
-                        from-pink-400
-                        via-fuchsia-500
-                        to-violet-600
-                        bg-clip-text
-                        text-transparent
-                        "
-                      >
+                      <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent">
                         ₹{product.price}
                       </p>
 
@@ -418,24 +393,10 @@ Please contact me regarding this project.
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex gap-3">
-
+                  <div className="flex gap-2 md:gap-3">
                     <button
                       onClick={() => addToCart(product._id)}
-                      className="
-                    flex-1
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    border
-                    border-white/20
-                    py-3
-                    rounded-xl
-                    hover:bg-white
-                    hover:text-black
-                    transition
-                    "
+                      className="flex-1 flex items-center justify-center gap-1 md:gap-2 border border-white/20 py-2 md:py-3 rounded-lg md:rounded-xl text-[9px] sm:text-xs md:text-base hover:bg-white hover:text-black transition"
                     >
                       <FaShoppingCart />
                       Cart
@@ -443,27 +404,7 @@ Please contact me regarding this project.
 
                     <button
                       onClick={() => handleBuyNow(product)}
-                      className="
-                      flex-1
-                      bg-gradient-to-r
-                      from-pink-400
-                      via-fuchsia-500
-                      to-violet-600
-                      text-white
-                      py-3
-                      rounded-xl
-                      font-bold
-                      transition-all
-                      duration-500
-                      hover:scale-105
-                      hover:brightness-125
-                      shadow-lg
-                      shadow-fuchsia-500/30
-                      hover:shadow-2xl
-                      hover:shadow-fuchsia-500/60
-                      border
-                      border-pink-400/30
-                      "
+                      className="flex-1 bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 text-white py-2 md:py-3 rounded-lg md:rounded-xl text-[9px] sm:text-xs md:text-base font-bold transition-all duration-500 hover:scale-105 hover:brightness-125 shadow-lg shadow-fuchsia-500/30"
                     >
                       Buy Now
                     </button>
