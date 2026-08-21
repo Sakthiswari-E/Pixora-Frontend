@@ -160,7 +160,7 @@ Please contact me regarding this project.
           Editing Services
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
@@ -177,7 +177,7 @@ Please contact me regarding this project.
       {/* Products */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {[...Array(8)].map((_, index) => (
               <ProductSkeleton key={index} />
             ))}
