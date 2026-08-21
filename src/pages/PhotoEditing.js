@@ -183,7 +183,7 @@ Please contact me regarding this project.
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-2 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {filteredProducts.map((product, index) => (
               <motion.div
                 key={product._id}
